@@ -1,10 +1,34 @@
-package com.napier.sem;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 /**
  * Represents an employee
  */
 public class Employee
 {
+public static void main(String[] args)
+        {
+        // Create new Application
+        Employee employee = new Employee();
+
+        // Connect to database
+        employee.connect();
+        // Get Employee
+        Employee emp = employee.getEmployee(255530);
+        // Display results
+        employee.displayEmployee(emp);
+
+        // Disconnect from database
+        employee.disconnect();
+        }
+
+    private void connect() {
+    }
+
+    private void disconnect() {
+    }
+
     /**
      * Employee number
      */
@@ -39,12 +63,13 @@ public class Employee
      * Employee's manager
      */
     public String manager;
-}
+
     public Employee getEmployee(int ID)
     {
         try
         {
             // Create an SQL statement
+            Connection con = null;
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
@@ -73,3 +98,18 @@ public class Employee
             return null;
         }
     }
+    public void displayEmployee(Employee emp)
+    {
+        if (emp != null)
+        {
+            System.out.println(
+                    emp.emp_no + " "
+                            + emp.first_name + " "
+                            + emp.last_name + "\n"
+                            + emp.title + "\n"
+                            + "Salary:" + emp.salary + "\n"
+                            + emp.dept_name + "\n"
+                            + "Manager: " + emp.manager + "\n");
+        }
+    }
+}
