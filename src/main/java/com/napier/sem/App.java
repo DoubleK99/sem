@@ -25,7 +25,7 @@ public class App {
             System.exit(-1);
         }
 
-        int retries = 10;
+        int retries = 100;
         for (int i = 0; i < retries; ++i)
         {
             System.out.println("Connecting to database...");
@@ -77,7 +77,7 @@ public class App {
         // Connect to database
         a.connect();
         // Get Employee
-        Employee emp = a.getEmployee(255530);
+        Employee emp = a.getEmployee(10001);
         // Display results
         a.displayEmployee(emp);
 
